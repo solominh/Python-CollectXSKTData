@@ -49,6 +49,7 @@ def fetch_lottery_first_prized_number_in(year=2016):
             print('Fail to extract number')
             number = 0
 
+        print('Number = {}'.format(number))
         first_prized_numbers.append(number)
 
     output_filepath = './first_prized_numbers_in_' + str(year) + '.txt'
