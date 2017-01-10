@@ -14,10 +14,10 @@ def get_first_prized_number_from(url):
     return elements[0].text.strip()
 
 
-def generate_HCM_lottery_issue_days():
+def generate_HCM_lottery_issue_days(year):
     """Issuing in Monday and Saturday"""
-    first_day = datetime.date(2016, 1, 1)
-    last_day = datetime.date(2016, 12, 31)
+    first_day = datetime.date(year, 1, 1)
+    last_day = datetime.date(year, 12, 31)
 
     while True:
         day_of_week = first_day.weekday()
@@ -38,7 +38,7 @@ def fetch_lottery_first_prized_number_in(year=2016):
 
     root_url = 'http://xskt.com.vn/ket-qua-xo-so-theo-ngay/tp-hcm-xshcm/'
     first_prized_numbers = []
-    for issuing_day in generate_HCM_lottery_issue_days():
+    for issuing_day in generate_HCM_lottery_issue_days(year):
         file_name = issuing_day.strftime('%d-%m-%Y.html')
         url = os.path.join(root_url, file_name)
         print(url)
