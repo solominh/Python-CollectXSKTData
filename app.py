@@ -17,7 +17,7 @@ def get_first_prized_number_from(url):
 def generate_HCM_lottery_issue_days():
     """Issuing in Monday and Saturday"""
     first_day = datetime.date(2016, 1, 1)
-    last_day = datetime.date(2016, 1, 31)
+    last_day = datetime.date(2016, 12, 31)
 
     while True:
         day_of_week = first_day.weekday()
@@ -31,7 +31,7 @@ def generate_HCM_lottery_issue_days():
             days=5) if first_day.weekday() == 0 else datetime.timedelta(days=2)
 
 
-def main():
+def fetch_lottery_first_prized_number_in(year=2016):
     """ Example link:
      url = 'http://xskt.com.vn/ket-qua-xo-so-theo-ngay/tp-hcm-xshcm/6-2-2016.html'
      """
@@ -43,12 +43,15 @@ def main():
         url = os.path.join(root_url, file_name)
         print(url)
 
-        number = get_first_prized_number_from(url)
+        try:
+            number = get_first_prized_number_from(url)
+        except:
+            print('Fail to extract number')
+            number = 0
+
         first_prized_numbers.append(number)
 
-    with open('./numbers.txt', 'w') as f:
+    output_filepath = './first_prized_numbers_in_' + str(year) + '.txt'
+    with open(output_filepath, 'w') as f:
         for number in first_prized_numbers:
             f.write(str(number) + '\n')
-
-
-main()
