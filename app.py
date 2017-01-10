@@ -1,6 +1,7 @@
 import bs4
 import requests
 import datetime
+from datetime import date
 import os
 
 
@@ -16,8 +17,8 @@ def get_first_prized_number_from(url):
 
 def generate_HCM_lottery_issue_days():
     """Issuing in Monday and Saturday"""
-    first_day = datetime.datetime(2016, 1, 1)
-    last_day = datetime.datetime(2016, 12, 31)
+    first_day = datetime.date(2016, 1, 1)
+    last_day = datetime.date(2016, 12, 31)
 
     while True:
         day_of_week = first_day.weekday()
