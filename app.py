@@ -1,4 +1,3 @@
-import bs4patch
 import bs4
 import requests
 
