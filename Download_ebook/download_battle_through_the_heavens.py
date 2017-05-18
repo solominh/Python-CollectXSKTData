@@ -25,7 +25,7 @@ def save_chapter(chapter_number):
     html = str(get_chapter(chapter_number))
 
     # Remove chapter link
-    cleaner_html = re.sub(r'<p><a(.*?)</a></p>', '', html)
+    cleaner_html = re.sub(r'<p><a(.*?)</p>', '', html)
 
     # Make chapter number become heading 3
     p = re.compile(r'<p>(.*?)</p>')
@@ -38,5 +38,5 @@ def save_chapter(chapter_number):
         f.write(new_html)
 
 
-for chapter_number in range(600, 762):
+for chapter_number in range(690, 761):
     save_chapter(chapter_number)
