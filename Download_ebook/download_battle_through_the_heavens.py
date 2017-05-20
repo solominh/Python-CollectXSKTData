@@ -1,15 +1,10 @@
 import bs4
 import requests
-import datetime
 import os
 import re
 
 
-def get_chapter(chapter_number):
-    """http://www.wuxiaworld.com/btth-index/btth-chapter-601/"""
-
-    url = r'http://www.wuxiaworld.com/btth-index/btth-chapter-' + \
-        str(chapter_number)
+def get_chapter(url):
     res = requests.get(url)
     res.raise_for_status()
 
@@ -21,8 +16,12 @@ def get_chapter(chapter_number):
 
 
 def save_chapter(chapter_number):
+
+    url = r'http://www.wuxiaworld.com/btth-index/btth-chapter-' + \
+        str(chapter_number)
+
     # toString
-    html = str(get_chapter(chapter_number))
+    html = str(get_chapter(url))
 
     # Remove chapter link
     cleaner_html = re.sub(r'<p><a(.*?)</p>', '', html)
@@ -38,5 +37,5 @@ def save_chapter(chapter_number):
         f.write(new_html)
 
 
-for chapter_number in range(690, 761):
+for chapter_number in range(761, 762):
     save_chapter(chapter_number)
